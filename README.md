@@ -1,3 +1,3 @@
 # Hasketafell
 Algorithm Implementations in Haskell
-- [Derivada&Ponto](https://replit.com/@gabrielluizone/Halkulus#Main.hs)
+- [Derivative and Point](https://replit.com/@gabrielluizone/Halkulus#Main.hs)
