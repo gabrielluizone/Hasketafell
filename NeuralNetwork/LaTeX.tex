@@ -1,0 +1,267 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} % Allows for eps images
+\graphicspath{{Figuras/}}
+\usepackage[brazil]{babel}
+\usepackage{hyperref}
+
+
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\setlength{\marginparwidth }{2cm} 
+
+%% Pacotes úteis
+\usepackage{amsmath}
+\usepackage{tcolorbox}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=black]{hyperref}
+\usepackage{texdate}
+\usepackage{setspace}
+\usepackage{indentfirst}
+\usepackage{hyperref} 
+\usepackage{caption}
+\usepackage[nottoc]{tocbibind}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{midpage}
+\usepackage{xurl}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{import}
+\usepackage{physics}
+\usepackage[hybrid]{markdown}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\begin{document}
+\begin{flushright}
+\centering % para centralizarmos a figura
+\includegraphics[width=3.5cm]{logo-fatec (1).png} % leia abaixo
+\includegraphics[width=3.5cm]{cps-logo-identidade.jpg}
+\includegraphics[width=3.5cm]{logo_sp.png}
+\label{figura:qualquernome}
+\end{flushright}
+
+% capa
+\vspace{5cm}
+\begin{center} %centralizar o texto abaixo
+{\bf \huge  Relatório de Redes Neurais}\\[5.1cm] % o comando \bf deixa o texto entre chaves em negrito. O comando \huge deixa o texto enorme
+\end{center} %término do comando centralizar
+
+{\large Alunos: Anabelle Elizabeth Araujo de Souza, Gabriel Luiz dos Santos Silva e Jules Severo Barcos}\\[1.0cm] % o comando \large deixa o texto grande
+
+{\large  Prof. Me. Alexandre Garcia de Oliveira \\[5.1cm]
+\vspace{2cm}
+\begin{center}
+{\large Santos, 02 de junho de 2023}
+\end{center}
+
+
+\newpage
+\lhead{}
+\chead{ Relatório de Redes Neurais}
+\rhead{}
+
+\newpage
+%
+\begin{center}
+%
+\begin{table}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|llll|}
+\hline
+\rowcolor
+\multicolumn{4}{|c|}{\cellcolor\textbf{CONTROLE DE VERSÃO}}                                                                                                                                       \\ \hline
+\rowcolor
+\multicolumn{1}{|l|}{\cellcolor\textbf{Autor}} & \multicolumn{1}{l|}{\cellcolor\textbf{Versão}} & \multicolumn{1}{l|}{\cellcolor\textbf{Data}} & \textbf{Descrição}   \\ \hline
+\multicolumn{1}{|l|}{Anabelle Souza}      & \multicolumn{1}{l|}{1.0}       & \multicolumn{1}{|l|}{01/06/2023}        & Edição do documento \\ \hline
+\multicolumn{1}{|l|}{Jules Severo}      & \multicolumn{1}{l|}{2.0}       & \multicolumn{1}{|l|}{01/06/2023}        & Edição do documento \\ \hline
+\multicolumn{1}{|l|}{Gabriel L. S. Silva}      & \multicolumn{1}{l|}{3.0}       & \multicolumn{1}{|l|}{01/06/2023}        & Edição do documento \\ \hline
+\end{tabular}%
+}
+\end{table}  
+%
+\end{center}
+%
+\begin{document}
+\newpage
+\tableofcontents  %    Esse comando gera o Sumário de forma automática! 
+\newpage
+%\listoftables %    Esse comando gera uma lista de Tabelas de forma automática!
+\newpage
+
+\newpage
+%\section {Definição de PCA (Principal Component Analysis)}
+\\
+
+% Não usamos a PCA no trabalhos
+%\PCA (Principal Component Analysis) é uma técnica estatística utilizada para redução de dimensionalidade e análise de dados multivariados. O objetivo do PCA é encontrar as principais componentes (ou direções) ao longo das quais os dados variam mais, permitindo assim uma representação mais compacta e informativa dos dados.Em termos simples, o PCA transforma um conjunto de variáveis correlacionadas em um novo conjunto de variáveis não correlacionadas, chamadas de componentes principais. Cada componente principal é uma combinação linear das variáveis originais, e a primeira componente principal captura a maior variação dos dados. As componentes seguintes são ortogonais à primeira e capturam a variação remanescente na ordem decrescente.O PCA é amplamente utilizado em várias áreas, como análise de dados, aprendizado de máquina e reconhecimento de padrões. Ele pode ser usado para visualizar dados de alta dimensionalidade em um espaço de menor dimensão, ajudar a identificar padrões e estruturas nos dados, reduzir a dimensionalidade antes de aplicar outros métodos de análise e remover a redundância nos dados.Além disso, o PCA também pode ser utilizado para detecção de outliers, pré-processamento de dados antes de aplicar algoritmos de aprendizado de máquina, compressão de imagens e reconstrução de dados faltantes. É uma ferramenta poderosa para análise exploratória de dados e pode fornecer insights valiosos sobre as relações entre as variáveis.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Definição de Redes Neurais}
+Redes neurais são modelos computacionais que se baseiam no funcionamento do cérebro humano. Elas são desenvolvidas para resolver problemas complexos de aprendizado e identificação de padrões. Esses modelos consistem em unidades de processamento chamadas de neurônios artificiais, que são conectados uns aos outros por meio de conexões ponderadas.Cada neurônio artificial recebe um conjunto de entradas, que são multiplicadas pelos valores dos pesos correspondentes. Essas entradas são processadas por meio de uma função de ativação não-linear, que introduz não-linearidade nos resultados dos neurônios. A saída de um neurônio pode ser enviada como entrada para outros neurônios, formando assim uma rede de neurônios interligados.As redes neurais se destacam por sua capacidade de aprender e generalizar a partir de exemplos fornecidos. Durante o processo de treinamento, os pesos das conexões entre os neurônios são ajustados de forma iterativa. Isso é feito utilizando algoritmos de otimização que minimizam a diferença entre a saída esperada e a saída real da rede neural. Esse ajuste de pesos permite que a rede neural reconheça padrões e tome decisões com base nos dados de entrada.
+
+\section{Redes Neurais: Peso x Bias}
+Em redes neurais, pesos (weights) e bias são dois componentes fundamentais para o funcionamento e aprendizado do modelo. Eles são usados para ajustar e controlar a atividade dos neurônios artificiais em cada camada da rede.
+
+Pesos (weights): Os pesos são valores associados às conexões entre os neurônios em uma rede neural. Cada conexão entre dois neurônios é representada por um peso, que indica a força ou a importância daquela conexão. Os pesos são ajustados durante o treinamento da rede neural, buscando encontrar a melhor configuração que permita que a rede aprenda a mapear corretamente os dados de entrada para as saídas desejadas. Os pesos determinam como os sinais são propagados pela rede, sendo multiplicados pelas entradas correspondentes e somados para produzir a saída de cada neurônio.
+
+Bias (viés): O bias, também conhecido como termo de viés, é um parâmetro adicional em cada neurônio, utilizado para introduzir um deslocamento na função de ativação. O bias permite que a rede neural ajuste a curva de ativação, controlando o ponto de partida ou o limiar a partir do qual a ativação ocorre. Ele adiciona um valor constante à soma ponderada dos sinais de entrada, antes de passá-los pela função de ativação. O bias é ajustado juntamente com os pesos durante o treinamento para otimizar o desempenho da rede. \texttt.
+
+
+
+\section{Descrição de Classificação do Data Set Câncer}
+Estamos utilizando o conjunto de dados sobre o câncer de mama, na qual possuem 5 colunas com as informações dos pacientes e 1 coluna com o diagnóstico. Este conjunto de dados de câncer de mama foi obtido nos Hospitais da Universidade de Wisconsin, Madison, do Dr. William H. Wolberg, onde pode ser feito o download pelo Kaggle.
+
+\begin{figure}[H]  % Se a imagem não estiver onde deseja, tente usar o comando [H] ao invés de [ht]
+\centerline{\includegraphics[width=1.0\linewidth]{GARD/TABLE.png}}
+\caption{Dados}
+\label{arquitetura}
+\end{figure}
+
+\item https://www.kaggle.com/datasets/merishnasuwal/breast-cancer-prediction-dataset.\\
+Nosso objetivo é classificar com base nas colunas:
+"mean_radius", "mean_texture", "mean_perimeter", "mean_area", "mean_smoothness", "diagnosis"\\ \text{se uma pessoa possue ou não câncer}
+
+\section{Função do Erro}
+\begin{figure}[H]  % Se a imagem não estiver onde deseja, tente usar o comando [H] ao invés de [ht]
+\centerline{\includegraphics[width=1.0\linewidth]{B.jpeg}}
+\caption{Função erro}
+\label{arquitetura}
+\end{figure}
+Com o objetivo de prever e classificar se um paciente possue ou não câncer, utilizaremos uma rede neural com 5 entradas de dados e 1 neurônio e 2 saídas, na qual retornará o diagnóstico positivo ou negativo.
+
+Para isso implementamos a função de ativação sigmoide e sua derivada na qual retornara o diagnóstico:
+
+\begin{figure}[H]  % Se a imagem não estiver onde deseja, tente usar o comando [H] ao invés de [ht]
+\centerline{\includegraphics[width=1.0\linewidth]{GARD/SIGMA.png}}
+\end{figure}
+
+Foi implementada a função predict na qual também está incluso a função sigmoide. O predict recebe os 5 valores enviados pelo e realiza a operação com os pesos calculados pelo gradiente descendente. No final a a função classifica o diagnóstico
+
+\begin{figure}[H]  % Se a imagem não estiver onde deseja, tente usar o comando [H] ao invés de [ht]
+\centerline{\includegraphics[width=1.0\linewidth]{GARD/PREDICT.png}}
+\end{figure}
+
+A função err e calcula o erro quadrático médio entre as previsões geradas por um modelo e os valores reais
+\begin{figure}[H]  % Se a imagem não estiver onde deseja, tente usar o comando [H] ao invés de [ht]
+\centerline{\includegraphics[width=1.0\linewidth]{GARD/ERR.png}}
+\end{figure}
+
+
+E o grádiente possue 3 funções:
+A primeira função, gradiente, calcula o gradiente do erro quadrático médio em relação aos pesos e ao viés da rede neural. Isso significa que a função calcula quanto o erro mudaria se cada peso ou viés fosse alterado um pouco. Essas informações são usadas para atualizar os pesos e o viés de forma a reduzir o erro.
+
+A segunda função, atualizaPesos, usa as informações do gradiente calculadas pela função gradiente para atualizar os pesos e o viés da rede neural. Ela faz isso subtraindo uma fração do gradiente dos pesos e do viés atuais. A fração é determinada pela taxa de aprendizado lr, que é um parâmetro que controla a rapidez com que a rede neural aprende.
+
+A terceira função, update, usa a função atualizaPesos para treinar a rede neural por um número fixo de épocas. Uma época é uma passagem completa pelos dados de treinamento. A cada época, a função update chama a função atualizaPesos para atualizar os pesos e o viés da rede neural e, em seguida, repete esse processo até que o número especificado de épocas tenha sido concluído.
+
+1. Derivada da função de ativação sigmoide:
+
+\[
+\sigma'(x) = \sigma(x) \cdot (1 - \sigma(x))
+\]
+
+2. Derivada parcial em relação a \(w_1\):
+
+\[
+\frac{{\partial E}}{{\partial w_1}} = \frac{{2}}{{n}} \sum_{i=1}^{n} (f(\mathbf{w}, \mathbf{x}_i) - y_i) \cdot \sigma'(f(\mathbf{w}, \mathbf{x}_i)) \cdot x_{i1}
+\]
+
+3. Derivada parcial em relação a \(w_2\):
+
+\[
+\frac{{\partial E}}{{\partial w_2}} = \frac{{2}}{{n}} \sum_{i=1}^{n} (f(\mathbf{w}, \mathbf{x}_i) - y_i) \cdot \sigma'(f(\mathbf{w}, \mathbf{x}_i)) \cdot x_{i2}
+\]
+
+4. Derivada parcial em relação a \(w_3\):
+
+\[
+\frac{{\partial E}}{{\partial w_3}} = \frac{{2}}{{n}} \sum_{i=1}^{n} (f(\mathbf{w}, \mathbf{x}_i) - y_i) \cdot \sigma'(f(\mathbf{w}, \mathbf{x}_i)) \cdot x_{i3}
+\]
+
+5. Derivada parcial em relação a \(w_4\):
+
+\[
+\frac{{\partial E}}{{\partial w_4}} = \frac{{2}}{{n}} \sum_{i=1}^{n} (f(\mathbf{w}, \mathbf{x}_i) - y_i) \cdot \sigma'(f(\mathbf{w}, \mathbf{x}_i)) \cdot x_{i4}
+\]
+
+6. Derivada parcial em relação a \(w_5\):
+
+\[
+\frac{{\partial E}}{{\partial w_5}} = \frac{{2}}{{n}} \sum_{i=1}^{n} (f(\mathbf{w}, \mathbf{x}_i) - y_i) \cdot \sigma'(f(\mathbf{w}, \mathbf{x}_i)) \cdot x_{i5}
+\]
+
+7. Derivada parcial em relação a \(b\):
+
+\[
+\frac{{\partial E}}{{\partial b}} = \frac{{2}}{{n}} \sum_{i=1}^{n} (f(\mathbf{w}, \mathbf{x}_i) - y_i) \cdot \sigma'(f(\mathbf{w}, \mathbf{x}_i))
+\]
+
+\begin{itemize}
+    \item \(E\) é o erro quadrático médio,
+    \item \(\mathbf{w} = [w_1, w_2, w_3, w_4, w_5]\) é o vetor de pesos,
+    \item \(\mathbf{x}_i = [x_{i1}, x_{i2}, x_{i3}, x_{i4}, x_{i5}]\) é o vetor de entrada dos dados de treinamento,
+    \item \(y_i\) é o valor de saída real correspondente aos dados de treinamento,
+    \item \(f(\mathbf{w}, \mathbf{x}_i)\) é a saída da rede neural para os dados de
+\end{itemize}
+
+
+\section{Sigmóide}
+\begin{figure}[H]  % Se a imagem não estiver onde deseja, tente usar o comando [H] ao invés de [ht]
+\centerline{\includegraphics[width=1.0\linewidth]{GARD/SIGMA.png}}
+\end{figure}
+
+
+\section{Gradiente}
+\begin{figure}[H]  % Se a imagem não estiver onde deseja, tente usar o comando [H] ao invés de [ht]
+\centerline{\includegraphics[width=1.0\linewidth]{B2.jpeg}}
+\end{figure}
+
+
+\section{Parâmetros }
+\begin{figure}[H]  % Se a imagem não estiver onde deseja, tente usar o comando [H] ao invés de [ht]
+\centerline{\includegraphics[width=1.0\linewidth]{B4.jpeg}}
+\caption{Learning Rate e Vetor Inicial}
+\label{arquitetura}
+\end{figure}
+
+\section{Resultados e Discussões}
+Nosso algoritmo de Redes Neurais verifica através de Pesos e Bias, o diagnóstico de "Câncer" e "Não Câncer". Para isso, quando a previsão do algoritmo de classificação for igual a  1, temos um resultado como "Câncer". Caso seja 0 , o diagnóstico é dado como "Nâo Câncer"
+\begin{figure}[H]  % Se a imagem não estiver onde deseja, tente usar o comando [H] ao invés de [ht]
+\centerline{\includegraphics[width=1.0\linewidth]{B5.jpeg}}
+
+\label{arquitetura}
+\end{figure}
+
+\begin{figure}[H]  % Se a imagem não estiver onde deseja, tente usar o comando [H] ao invés de [ht]
+\centerline{\includegraphics[width=1.0\linewidth]{B5.2.jpeg}}
+
+\label{arquitetura}
+\end{figure}
+
+\begin{figure}[H]  % Se a imagem não estiver onde deseja, tente usar o comando [H] ao invés de [ht]
+\centerline{\includegraphics[width=1.0\linewidth]{B6.jpeg}}
+
+\label{arquitetura}
+\end{figure}
+
+\begin{figure}[H]  % Se a imagem não estiver onde deseja, tente usar o comando [H] ao invés de [ht]
+\centerline{\includegraphics[width=1.0\linewidth]{B6.2.jpeg}}
+
+\label{arquitetura}
+\end{figure}
+\begin{figure}[H]  % Se a imagem não estiver onde deseja, tente usar o comando [H] ao invés de [ht]
+\centerline{\includegraphics[width=1.0\linewidth]{GARD/PLTSIG.png}}
+A acurácia pode ser vista no Notebook, na qual é 0.96 sobre os dados de testes (dados que não foram postos para a rede treinar)
+
+\label{arquitetura}
+\end{figure}
+
+\section {Github}
+
+\href{https://github.com/AnabelleSouza/RedesNeurais}{AnabelleSouza/Redes Neurais} \textbf{ • }
+\href{https://github.com/gabrielluizone/Hasketafell}{gabrielluizone/Hasketafell}
+
+
+\end{document}
